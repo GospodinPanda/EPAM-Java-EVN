@@ -5,6 +5,10 @@ import java.util.Objects;
 public class CargoPlane extends Plane {
     private float cargoVolume;
 
+    public CargoPlane(String model) {
+        super(model);
+    }
+
     public CargoPlane(String model, int crewCount, int carryingCapacity, float fuelConsumption, int flightRange, float cargoVolume) {
         super(model, crewCount, carryingCapacity, fuelConsumption, flightRange);
         this.cargoVolume = cargoVolume;

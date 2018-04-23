@@ -1,6 +1,6 @@
 package com.epam.task1.exception;
 
-public class PlaneNotFoundException extends TaskOneException{
+public class PlaneNotFoundException extends Exception {
     public PlaneNotFoundException() {
         super();
     }

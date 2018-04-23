@@ -1,6 +1,6 @@
 package com.epam.task1.exception;
 
-public class InputLogicException extends TaskOneException {
+public class InputLogicException extends Exception {
     public InputLogicException() {
         super();
     }

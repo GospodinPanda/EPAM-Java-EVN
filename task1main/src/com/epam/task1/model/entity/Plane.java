@@ -1,8 +1,9 @@
 package com.epam.task1.model.entity;
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Plane {
+public class Plane  implements Comparable<Plane>{
     private String model;
     private int crewCount;
     private int carryingCapacity;
@@ -13,6 +14,10 @@ public class Plane {
         this.model = "unknown";
     }
 
+    public Plane(String model){
+        this.model = model;
+    }
+
     public Plane(String model, int crewCount, int carryingCapacity, float fuelConsumption, int flightRange) {
         this.model = model;
         this.crewCount = crewCount;
@@ -21,13 +26,6 @@ public class Plane {
         this.flightRange = flightRange;
     }
 
-    public Plane(Plane plane) {
-        this.model = plane.model;
-        this.crewCount = plane.crewCount;
-        this.carryingCapacity = plane.carryingCapacity;
-        this.fuelConsumption = plane.fuelConsumption;
-        this.flightRange = plane.flightRange;
-    }
 
     public String getModel() {
         return model;
@@ -67,6 +65,12 @@ public class Plane {
 
     public void setFlightRange(int flightRange) {
         this.flightRange = flightRange;
+    }
+
+
+    @Override
+    public int compareTo(Plane o) {
+        return (int)(this.getFlightRange()-o.getFlightRange());
     }
 
     @Override

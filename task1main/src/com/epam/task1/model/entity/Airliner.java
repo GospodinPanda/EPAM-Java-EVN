@@ -9,6 +9,10 @@ public class Airliner extends Plane {
         super();
     }
 
+    public Airliner(String model) {
+        super(model);
+    }
+
     public Airliner(String model, int crewCount, int carryingCapacity, float fuelConsumption, int flightRange, int seatingCapacity) {
         super(model, crewCount, carryingCapacity, fuelConsumption, flightRange);
         this.seatingCapacity = seatingCapacity;

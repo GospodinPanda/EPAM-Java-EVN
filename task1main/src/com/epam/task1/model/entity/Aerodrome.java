@@ -36,13 +36,13 @@ public class Aerodrome {
     }
 
 
-    public int size() {
+    public int getSize() {
         return planes.size();
     }
 
     @Override
     public String toString() {
-        return "Aerodrome: " +
-                "planes:" + planes;
+        return getClass().getName() +
+                " planes:" + planes;
     }
 }

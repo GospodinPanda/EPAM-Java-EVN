@@ -1,25 +1,26 @@
 package com.epam.task1.controller;
 
-import com.epam.task1.exception.TaskOneException;
+import com.epam.task1.exception.InputLogicException;
+import com.epam.task1.exception.PlaneNotFoundException;
 import com.epam.task1.model.entity.Aerodrome;
-import com.epam.task1.model.logic.AerodromeLogic;
+import com.epam.task1.logic.AerodromeLogic;
 import com.epam.task1.util.AerodromeGenerator;
-import com.epam.task1.view.Printer;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
-        AerodromeGenerator generator = AerodromeGenerator.getInstance();
+        AerodromeGenerator generator = new AerodromeGenerator();
         Aerodrome aerodrome = generator.generateAerodrome();
-        Printer printer = new Printer();
-        printer.print(aerodrome.toString());
+        AerodromeLogic aerodromeLogic =new AerodromeLogic();
+
+        System.out.println(aerodrome.toString());
         try {
-            printer.print("Cargo volume is: " + AerodromeLogic.getInstance().countTotalCargoVolume(aerodrome));
-            printer.print("Carrying capacity is: " + AerodromeLogic.getInstance().countTotalCarryingCapacity(aerodrome));
-            printer.print("Seat capacity: " + AerodromeLogic.getInstance().countTotalSeatingCapacityIncludingCrew(aerodrome));
-            printer.print(AerodromeLogic.getInstance().findPlaneWithFuelConsumption(aerodrome, 400, 700));
-            AerodromeLogic.getInstance().sortOnFlightRange(aerodrome);
-            printer.print(aerodrome.toString());
-        } catch (TaskOneException e) {
+            System.out.println("Cargo volume is: " + aerodromeLogic.countTotalCargoVolume(aerodrome));
+            System.out.println("Carrying capacity is: " + aerodromeLogic.countTotalCarryingCapacity(aerodrome));
+            System.out.println("Seat capacity: " + aerodromeLogic.countTotalSeatingCapacityIncludingCrew(aerodrome));
+            aerodromeLogic.sortOnFlightRange(aerodrome);
+            System.out.println(aerodrome.toString());
+            System.out.println(aerodromeLogic.findPlaneWithFuelConsumption(aerodrome, 50, 5000));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -1,25 +1,21 @@
-package com.epam.task1.model.logic;
+package com.epam.task1.logic;
 
 import com.epam.task1.exception.InputLogicException;
+import com.epam.task1.exception.PlaneNotFoundException;
 import com.epam.task1.model.entity.Aerodrome;
 import com.epam.task1.model.entity.Airliner;
 import com.epam.task1.model.entity.CargoPlane;
 import com.epam.task1.model.entity.Plane;
 
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 
 public class AerodromeLogic {
-    private static AerodromeLogic instance = new AerodromeLogic();
-
-    public static AerodromeLogic getInstance() {
-        return instance;
-    }
 
     public int countTotalCarryingCapacity(Aerodrome aerodrome) {
         int totalCapacity = 0;
-        for (int i = 0; i < aerodrome.size(); i++) {
-            Plane currentPlane = aerodrome.getPlanes().get(i);
+        List<Plane> planeList = aerodrome.getPlanes();
+        for (Plane currentPlane : planeList) {
             totalCapacity += currentPlane.getCarryingCapacity();
         }
         return totalCapacity;
@@ -27,8 +23,8 @@ public class AerodromeLogic {
 
     public int countTotalSeatingCapacityIncludingCrew(Aerodrome aerodrome) {
         int totalCapacity = 0;
-        for (int i = 0; i < aerodrome.size(); i++) {
-            Plane currentPlane = aerodrome.getPlanes().get(i);
+        List<Plane> planeList = aerodrome.getPlanes();
+        for (Plane currentPlane : planeList) {
             if (currentPlane instanceof Airliner) {
                 totalCapacity += ((Airliner) currentPlane).getSeatingCapacity() + currentPlane.getCrewCount();
             } else {
@@ -40,8 +36,8 @@ public class AerodromeLogic {
 
     public int countTotalSeatingCapacityWithoutCrew(Aerodrome aerodrome) {
         int totalCapacity = 0;
-        for (int i = 0; i < aerodrome.size(); i++) {
-            Plane currentPlane = aerodrome.getPlanes().get(i);
+        List<Plane> planeList = aerodrome.getPlanes();
+        for (Plane currentPlane : planeList) {
             if (currentPlane instanceof Airliner) {
                 totalCapacity += ((Airliner) currentPlane).getSeatingCapacity();
             }
@@ -51,8 +47,8 @@ public class AerodromeLogic {
 
     public float countTotalCargoVolume(Aerodrome aerodrome) {
         float totalVolume = 0;
-        for (int i = 0; i < aerodrome.size(); i++) {
-            Plane currentPlane = aerodrome.getPlanes().get(i);
+        List<Plane> planeList = aerodrome.getPlanes();
+        for (Plane currentPlane : planeList) {
             if (currentPlane instanceof CargoPlane) {
                 totalVolume += ((CargoPlane) currentPlane).getCargoVolume();
             }
@@ -62,26 +58,21 @@ public class AerodromeLogic {
 
 
     public void sortOnFlightRange(Aerodrome aerodrome) {
-        Collections.sort(aerodrome.getPlanes(), new Comparator<Plane>() {
-            @Override
-            public int compare(Plane o1, Plane o2) {
-                return (int) (o1.getFlightRange() - o2.getFlightRange());
-            }
-        });
+        Collections.sort(aerodrome.getPlanes());
     }
 
 
-    public Plane findPlaneWithFuelConsumption(Aerodrome aerodrome, float from, float towards) throws InputLogicException {
+    public Plane findPlaneWithFuelConsumption(Aerodrome aerodrome, float from, float towards) throws InputLogicException, PlaneNotFoundException {
         if (from < 0.0f || towards < 0.0f) {
             throw new InputLogicException("fuel limits can't be negative");
         }
-        for (int i = 0; i < aerodrome.size(); i++) {
-            Plane currentPlane = aerodrome.getPlanes().get(i);
+        List<Plane> planeList = aerodrome.getPlanes();
+        for (Plane currentPlane : planeList) {
             if (currentPlane.getFuelConsumption() > from && currentPlane.getFuelConsumption() < towards) {
                 return currentPlane;
             }
         }
-        return null;
+        throw new PlaneNotFoundException();
     }
 
 }

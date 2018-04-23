@@ -1,5 +1,6 @@
 package com.epam.task1.util;
 
+import com.epam.task1.model.PlaneTypes;
 import com.epam.task1.model.entity.Aerodrome;
 import com.epam.task1.model.entity.Airliner;
 import com.epam.task1.model.entity.CargoPlane;
@@ -23,14 +24,9 @@ public class AerodromeGenerator {
     private static final int MIN_CARGO_VOLUME = 200;
     private static final int MAX_CARGO_VOLUME = 5000;
 
-    private static AerodromeGenerator instance = new AerodromeGenerator();
 
-    private AerodromeGenerator() {
-    }
 
-    public static AerodromeGenerator getInstance() {
-        return instance;
-    }
+
 
     public Aerodrome generateAerodrome() {
         Aerodrome aerodrome = new Aerodrome();
@@ -70,7 +66,14 @@ public class AerodromeGenerator {
         int crewCount = random.nextInt(MAX_CREW_COUNT) + MIN_CREW_COUNT;
         float fuelConsumption = MIN_FUEL_CONSUMPTION + random.nextFloat() * (MAX_FUEL_CONSUMPTION - MIN_FUEL_CONSUMPTION);
         int flightRange = random.nextInt(MAX_FLIGHT_RANGE) + MIN_FLIGHT_RANGE;
-        return new Airliner(name.toString(), crewCount, carryingCapacity, fuelConsumption, flightRange, seatingCapacity);
+        Airliner temp = new Airliner(name.toString());
+        temp.setCarryingCapacity(carryingCapacity);
+        temp.setCrewCount(crewCount);
+        temp.setFlightRange(flightRange);
+        temp.setFuelConsumption(fuelConsumption);
+        temp.setSeatingCapacity(seatingCapacity);
+
+        return temp;
     }
 
     private CargoPlane generateCargoPlane() {
@@ -83,6 +86,12 @@ public class AerodromeGenerator {
         float fuelConsumption = MIN_FUEL_CONSUMPTION + random.nextFloat() * (MAX_FUEL_CONSUMPTION - MIN_FUEL_CONSUMPTION);
         int flightRange = random.nextInt(MAX_FLIGHT_RANGE) + MIN_FLIGHT_RANGE;
         int cargoVolume = random.nextInt(MAX_CARGO_VOLUME) + MIN_CARGO_VOLUME;
-        return new CargoPlane(name.toString(), crewCount, carryingCapacity, fuelConsumption, flightRange, cargoVolume);
+        CargoPlane temp = new CargoPlane(name.toString());
+        temp.setCarryingCapacity(carryingCapacity);
+        temp.setCrewCount(crewCount);
+        temp.setFlightRange(flightRange);
+        temp.setFuelConsumption(fuelConsumption);
+        temp.setCargoVolume(cargoVolume);
+        return temp;
     }
 }
