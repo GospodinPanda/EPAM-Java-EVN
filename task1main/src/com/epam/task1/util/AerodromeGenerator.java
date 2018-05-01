@@ -1,10 +1,6 @@
 package com.epam.task1.util;
 
-import com.epam.task1.model.PlaneTypes;
-import com.epam.task1.model.entity.Aerodrome;
-import com.epam.task1.model.entity.Airliner;
-import com.epam.task1.model.entity.CargoPlane;
-import com.epam.task1.model.entity.Plane;
+import com.epam.task1.model.entity.*;
 
 import java.util.Random;
 import java.util.UUID;
@@ -23,9 +19,6 @@ public class AerodromeGenerator {
     private static final int MAX_FLIGHT_RANGE = 15_000;
     private static final int MIN_CARGO_VOLUME = 200;
     private static final int MAX_CARGO_VOLUME = 5000;
-
-
-
 
 
     public Aerodrome generateAerodrome() {
@@ -72,7 +65,6 @@ public class AerodromeGenerator {
         temp.setFlightRange(flightRange);
         temp.setFuelConsumption(fuelConsumption);
         temp.setSeatingCapacity(seatingCapacity);
-
         return temp;
     }
 

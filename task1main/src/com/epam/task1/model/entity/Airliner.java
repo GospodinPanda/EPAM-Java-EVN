@@ -43,7 +43,7 @@ public class Airliner extends Plane {
 
     @Override
     public String toString() {
-        return "Airliner " + super.toString() +
-                "seatingCapacity=" + seatingCapacity + " ";
+        return getClass().getName() +
+                " seatingCapacity=" + seatingCapacity + " ";
     }
 }

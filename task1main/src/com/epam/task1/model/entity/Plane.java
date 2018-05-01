@@ -1,6 +1,5 @@
 package com.epam.task1.model.entity;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Plane  implements Comparable<Plane>{
@@ -93,7 +92,7 @@ public class Plane  implements Comparable<Plane>{
 
     @Override
     public String toString() {
-        return "model='" + model + '\'' +
+        return getClass().getName() + '\'' +
                 ", crewCount=" + crewCount +
                 ", carryingCapacity=" + carryingCapacity +
                 ", fuelConsumption=" + fuelConsumption +

@@ -39,8 +39,7 @@ public class CargoPlane extends Plane {
 
     @Override
     public String toString() {
-        return "CargoPlane " +
-                super.toString() +
-                "cargoVolume=" + cargoVolume;
+        return getClass().getName() +
+                " cargoVolume=" + cargoVolume;
     }
 }
