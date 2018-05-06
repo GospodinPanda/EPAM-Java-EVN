@@ -11,7 +11,6 @@ public class Runner {
         AerodromeGenerator generator = new AerodromeGenerator();
         Aerodrome aerodrome = generator.generateAerodrome();
         AerodromeLogic aerodromeLogic = new AerodromeLogic();
-
         System.out.println(aerodrome.toString());
         try {
             System.out.println("Cargo volume is: " + aerodromeLogic.countTotalCargoVolume(aerodrome));

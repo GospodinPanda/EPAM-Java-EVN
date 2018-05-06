@@ -2,6 +2,11 @@ package com.epam.task1.model.entity;
 
 import java.util.Objects;
 
+/**
+ * Is an extension of {@code Plane} that is used to store CargoPlane entity
+ *
+ * @author SomSom
+ */
 public class CargoPlane extends Plane {
     private float cargoVolume;
 

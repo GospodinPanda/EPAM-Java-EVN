@@ -5,6 +5,9 @@ import com.epam.task1.model.entity.*;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * Class {@code {@link com.epam.task1.logic.AerodromeLogic}} is used to generate whole aerodromes
+ */
 public class AerodromeGenerator {
     private static final int MAX_AERODROME_SIZE = 10;
     private static final int MAX_SEATING_CAPACITY = 400;

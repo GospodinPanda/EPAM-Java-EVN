@@ -2,7 +2,12 @@ package com.epam.task1.model.entity;
 
 import java.util.Objects;
 
-public class Plane  implements Comparable<Plane>{
+/**
+ * Class {@code Plane} is used to store Plane entity
+ *
+ * @author SomSom
+ */
+public class Plane implements Comparable<Plane> {
     private String model;
     private int crewCount;
     private int carryingCapacity;
@@ -13,7 +18,7 @@ public class Plane  implements Comparable<Plane>{
         this.model = "unknown";
     }
 
-    public Plane(String model){
+    public Plane(String model) {
         this.model = model;
     }
 
@@ -29,6 +34,7 @@ public class Plane  implements Comparable<Plane>{
     public String getModel() {
         return model;
     }
+
 
     public void setModel(String model) {
         this.model = model;
@@ -69,7 +75,7 @@ public class Plane  implements Comparable<Plane>{
 
     @Override
     public int compareTo(Plane o) {
-        return (int)(this.getFlightRange()-o.getFlightRange());
+      return Float.compare(this.getFlightRange(),o.getFlightRange());
     }
 
     @Override
@@ -86,7 +92,6 @@ public class Plane  implements Comparable<Plane>{
 
     @Override
     public int hashCode() {
-
         return Objects.hash(model, crewCount, carryingCapacity, fuelConsumption, flightRange);
     }
 

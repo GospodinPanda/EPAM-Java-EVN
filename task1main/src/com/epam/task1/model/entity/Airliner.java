@@ -2,6 +2,11 @@ package com.epam.task1.model.entity;
 
 import java.util.Objects;
 
+/**
+ * Is an extension of {@code {@link Plane}} that is used to store Airliner entity
+ *
+ * @author SomSom
+ */
 public class Airliner extends Plane {
     private int seatingCapacity;
 
