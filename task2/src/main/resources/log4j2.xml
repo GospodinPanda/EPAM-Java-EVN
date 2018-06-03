@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="3">
+    <appenders>
+        <File name="FILE" fileName="logs/logs.txt">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] (%F:%L) - %m%n"/>
+            <Filters>
+                <Filters>
+                    <ThresholdFilter level="debug" />
+                    <ThresholdFilter level="info" onMatch="DENY"
+                                     onMismatch="NEUTRAL" />
+                </Filters>
+            </Filters>
+        </File>
+        <File name="FILE_ERROR" fileName="logs/logs.txt">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] (%F:%L) - %m%n" />
+            <Filters>
+                <Filters>
+                    <ThresholdFilter level="fatal" onMatch="DENY"   onMismatch="NEUTRAL"/>
+                    <ThresholdFilter level="error"  onMatch="ACCEPT" onMismatch="DENY"/>
+                </Filters>
+            </Filters>
+        </File>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] (%F:%L) - %m%n" />
+            <Filters>
+                <Filters>
+                    <ThresholdFilter level="fatal" onMatch="DENY"   onMismatch="NEUTRAL"/>
+                    <ThresholdFilter level="warn" onMismatch="NEUTRAL" onMatch="DENY"/>
+                    <ThresholdFilter level="info"  onMatch="ACCEPT" onMismatch="DENY"/>
+                </Filters>
+            </Filters>
+        </Console>
+        <Console name="CONSOLE_ERROR" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5p] (%F:%L) - %m%n" />
+            <Filters>
+                <Filters>
+                    <ThresholdFilter level="fatal" onMatch="DENY"   onMismatch="NEUTRAL"/>
+                    <ThresholdFilter level="error"  onMatch="ACCEPT" onMismatch="DENY"/>
+                </Filters>
+            </Filters>
+        </Console>
+    </appenders>
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="FILE_ERROR"/>
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="CONSOLE_ERROR"/>
+        </root>
+    </loggers>
+</Configuration>
