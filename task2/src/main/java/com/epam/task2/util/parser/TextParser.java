@@ -4,7 +4,8 @@ import com.epam.task2.entity.TextUnit;
 
 public abstract class TextParser {
     TextParser nextParser;
-    public  void setNextParser(TextParser nextParser){
+
+    public void setNextParser(TextParser nextParser) {
         this.nextParser = nextParser;
     }
 
