@@ -67,7 +67,20 @@ public class CompositeUnitEntity extends TextUnit {
         return Objects.equals(childs, that.childs) &&
                 getType() == that.getType();
     }
-
+    @Override
+    public String getContent(){
+        StringBuilder content=new StringBuilder();
+        for (TextUnit textEntity : childs) {
+            if(textEntity.isLeafTextUnit()) {
+                LeafUnit leaf= (LeafUnit) textEntity;
+                content.append( leaf.getContent());
+            }else{
+                CompositeUnitEntity entity = (CompositeUnitEntity) textEntity;
+                content.append(entity.getContent());
+            }
+        }
+        return content.toString();
+    }
     @Override
     public int hashCode() {
         return Objects.hash(childs, getType());
@@ -114,7 +127,7 @@ public class CompositeUnitEntity extends TextUnit {
                     break;
             }
         }
-            //return new String(text).trim();
-            return new String(text);
-        }
+        //return new String(text).trim();
+        return new String(text);
+    }
 }

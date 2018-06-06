@@ -12,16 +12,20 @@ public class TextLogic {
         CompositeUnitEntity parsedText = (CompositeUnitEntity) ParserLogic.parse(text);
         List<TextUnit> paragraphs = parsedText.getChildTextUnits();
         for (TextUnit paragraph : paragraphs) {
+
             CompositeUnitEntity currentParagraph = (CompositeUnitEntity) paragraph;
-            List<TextUnit> senteces = currentParagraph.getChildTextUnits();
-            CompositeUnitEntity currentSentence = (CompositeUnitEntity) senteces.get(sentenceNumber);
-            System.out.println(currentSentence);
-            List<TextUnit> words = currentSentence.getChildTextUnits();
-            for (TextUnit word : words) {
-                if (word.getType() == TextUnitType.WORD && word.getContent().length() == (length-1)) {
-                    word.setContent(replacer);
+            if(currentParagraph.size()>=sentenceNumber) {
+                List<TextUnit> senteces = currentParagraph.getChildTextUnits();
+                CompositeUnitEntity currentSentence = (CompositeUnitEntity) senteces.get(sentenceNumber-1);
+                System.out.println(currentSentence);
+                List<TextUnit> words = currentSentence.getChildTextUnits();
+                for (TextUnit word : words) {
+                    if (word.getType() == TextUnitType.WORD && word.getContent().length() == (length)) {
+                        word.setContent(replacer);
+                    }
                 }
-            }
+                break;
+            } else {sentenceNumber=sentenceNumber-currentParagraph.size();}
         }
         return parsedText;
     }
