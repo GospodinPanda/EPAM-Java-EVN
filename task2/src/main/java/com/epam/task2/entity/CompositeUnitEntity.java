@@ -60,14 +60,6 @@ public class CompositeUnitEntity extends TextUnit {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CompositeUnitEntity)) return false;
-        CompositeUnitEntity that = (CompositeUnitEntity) o;
-        return Objects.equals(childs, that.childs) &&
-                getType() == that.getType();
-    }
-    @Override
     public String getContent(){
         StringBuilder content=new StringBuilder();
         for (TextUnit textEntity : childs) {
@@ -81,6 +73,16 @@ public class CompositeUnitEntity extends TextUnit {
         }
         return content.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CompositeUnitEntity)) return false;
+        CompositeUnitEntity that = (CompositeUnitEntity) o;
+        return Objects.equals(childs, that.childs) &&
+                getType() == that.getType();
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(childs, getType());

@@ -23,7 +23,6 @@ public class ParagraphParser extends TextParser {
         while (matcher.find()){
             paragraphs.add(matcher.group());
         }
-
         for (String paragraph : paragraphs) {
             matcher = Pattern.compile(ResourceManager.getProperty(REGEX_CODE),Pattern.MULTILINE).matcher(paragraph);
             if (matcher.find()) {
