@@ -9,7 +9,8 @@ import java.io.IOException;
 
 public class FileManager {
     private static Logger LOGGER = LogManager.getLogger(FileManager.class);
-    public String getTextFromFile(String filePath){
+
+    public String getTextFromFile(String filePath) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             FileReader fr = new FileReader(new File(filePath));
@@ -17,9 +18,10 @@ public class FileManager {
             while ((c = fr.read()) != -1) {
                 stringBuilder.append((char) c);
             }
+            fr.close();
         } catch (IOException e) {
             LOGGER.error("Input/Output exception");
         }
-    return stringBuilder.toString();
+        return stringBuilder.toString();
     }
 }

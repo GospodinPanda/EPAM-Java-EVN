@@ -2,13 +2,14 @@ package com.epam.task2.logic;
 
 import com.epam.task2.entity.CompositeUnitEntity;
 import com.epam.task2.entity.TextUnit;
-import com.epam.task2.entity.TextUnitType;
+import com.epam.task2.manager.ResourceManager;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class TextLogic {
+    private final static String REGEX_PUNCTUATION = "regex.punctuation";
 
     public CompositeUnitEntity replaceOnLength(String text, int sentenceNumber, int length, String replacer) {
         CompositeUnitEntity parsedText = (CompositeUnitEntity) ParserLogic.parse(text);
@@ -21,7 +22,7 @@ public class TextLogic {
                 System.out.println(currentSentence);
                 List<TextUnit> words = currentSentence.getChildTextUnits();
                 for (TextUnit word : words) {
-                    if (word.getType() == TextUnitType.WORD && word.getContent().length() == (length)) {
+                    if (!word.getContent().matches(ResourceManager.getProperty(REGEX_PUNCTUATION)) && word.getContent().length() == (length)) {
                         word.setContent(replacer);
                     }
                 }
@@ -45,7 +46,7 @@ public class TextLogic {
                 List<TextUnit> words = currentSentence.getChildTextUnits();
                 Set<TextUnit> wordsCounter = new HashSet<TextUnit>();
                 for (TextUnit word : words) {
-                    if (word.getType() == TextUnitType.WORD) {
+                    if (!word.getContent().matches(ResourceManager.getProperty(REGEX_PUNCTUATION))) {
                         if (!wordsCounter.add(word)) {
                             sentencesNumber++;
                             break;

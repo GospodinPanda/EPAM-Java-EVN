@@ -3,29 +3,25 @@ package com.epam.task2.entity;
 import java.util.Objects;
 
 public class LeafUnit extends TextUnit {
-    private TextUnitType type;
+    String content;
 
-    public LeafUnit(TextUnitType type, String content) {
-        this.type = type;
+
+    public LeafUnit(String content) {
         this.content = content;
     }
 
     public LeafUnit() {
     }
 
-    @Override
-    public TextUnitType getType() {
-        return type;
-    }
 
     @Override
-    public void setType(TextUnitType type) {
-        this.type = type;
-    }
-
-    @Override
-    public boolean isLeafTextUnit() {
+    public boolean isLeaf() {
         return true;
+    }
+
+    @Override
+    public int size() {
+        return 0;
     }
 
     @Override
@@ -33,17 +29,25 @@ public class LeafUnit extends TextUnit {
         if (this == o) return true;
         if (!(o instanceof LeafUnit)) return false;
         LeafUnit leafUnit = (LeafUnit) o;
-        return getContent().equals( leafUnit.getContent()) && getType() == leafUnit.getType();
+        return getContent().equals(leafUnit.getContent());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getType());
+        return Objects.hash(content);
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return content;
     }
 }

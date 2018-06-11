@@ -1,24 +1,12 @@
 package com.epam.task2.entity;
 
 public abstract class TextUnit {
-    String content;
 
-    public abstract TextUnitType getType();
+    public abstract boolean isLeaf();
 
-    public abstract void setType(TextUnitType type);
+    public abstract String getContent();
 
-    public abstract boolean isLeafTextUnit();
+    public abstract void setContent(String content);
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return content;
-    }
+    public abstract int size();
 }

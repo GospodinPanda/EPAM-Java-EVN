@@ -14,6 +14,7 @@ public class ParserLogic {
         paragraphParser.setNextParser(sentenceParser);
         sentenceParser.setNextParser(sentenceUnitParser);
     }
+
     public static TextUnit parse(String text) {
         return paragraphParser.parse(text);
     }

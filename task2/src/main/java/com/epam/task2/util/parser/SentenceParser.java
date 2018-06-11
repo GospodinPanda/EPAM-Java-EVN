@@ -2,7 +2,6 @@ package com.epam.task2.util.parser;
 
 import com.epam.task2.entity.CompositeUnitEntity;
 import com.epam.task2.entity.TextUnit;
-import com.epam.task2.entity.TextUnitType;
 import com.epam.task2.manager.ResourceManager;
 
 import java.util.ArrayList;
@@ -16,14 +15,12 @@ public class SentenceParser extends TextParser {
 
     @Override
     public TextUnit parse(String text) {
-        CompositeUnitEntity parsedText = new CompositeUnitEntity(TextUnitType.PARAGRAPH);
+        CompositeUnitEntity parsedText = new CompositeUnitEntity();
         List<String> sentences = new ArrayList<>();
         Matcher matcher = Pattern.compile(ResourceManager.getProperty(REGEX_SENTENCE)).matcher(text);
         while (matcher.find()) {
             sentences.add(matcher.group());
         }
-
-
         for (String sentence : sentences) {
             parsedText.addChildTextUnit(nextParser.parse(sentence));
         }

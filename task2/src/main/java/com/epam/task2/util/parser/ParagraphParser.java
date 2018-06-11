@@ -3,7 +3,6 @@ package com.epam.task2.util.parser;
 import com.epam.task2.entity.CompositeUnitEntity;
 import com.epam.task2.entity.LeafUnit;
 import com.epam.task2.entity.TextUnit;
-import com.epam.task2.entity.TextUnitType;
 import com.epam.task2.manager.ResourceManager;
 
 import java.util.ArrayList;
@@ -17,16 +16,16 @@ public class ParagraphParser extends TextParser {
 
     @Override
     public TextUnit parse(String text) {
-        CompositeUnitEntity parsedText = new CompositeUnitEntity(TextUnitType.TEXT);
+        CompositeUnitEntity parsedText = new CompositeUnitEntity();
         List<String> paragraphs = new ArrayList<>();
         Matcher matcher = Pattern.compile(ResourceManager.getProperty(REGEX_PARAGRAPH)).matcher(text);
-        while (matcher.find()){
+        while (matcher.find()) {
             paragraphs.add(matcher.group());
         }
         for (String paragraph : paragraphs) {
-            matcher = Pattern.compile(ResourceManager.getProperty(REGEX_CODE),Pattern.MULTILINE).matcher(paragraph);
+            matcher = Pattern.compile(ResourceManager.getProperty(REGEX_CODE), Pattern.MULTILINE).matcher(paragraph);
             if (matcher.find()) {
-                parsedText.addChildTextUnit(new LeafUnit(TextUnitType.CODE, paragraph));
+                parsedText.addChildTextUnit(new LeafUnit(paragraph));
             } else {
                 parsedText.addChildTextUnit(nextParser.parse(paragraph));
             }
